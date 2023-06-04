@@ -1,0 +1,83 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Daily To-Do List</title>
+    <!-- Used font awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="font-awesome.css">
+    <link rel="stylesheet" href="style.css">
+    <script src="main.js"></script>
+
+    <style>
+
+    </style>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+</head>
+<body>
+    <div class="walpaper">
+    <h1 id="title">To-Do List</h1>
+    <div class="container">
+        <input type="text" id="task" placeholder="Enter Task" required>
+        <button type="button" id="add" onsubmit="return validateForm()">+</button>
+        <span class="error"></span>
+        <ul></ul>
+    
+    </div>
+   
+</div>
+    <script type="text/javascript">
+
+$(document).ready(function(){
+
+$('#add').click(function(){
+    var task = $('#task').val();
+    var length = task.length;
+    console.log(length);
+    if(length < 1) {
+
+        $('#task').css('border-color','red');
+         $('#task').css('border-width','3px');
+   
+    } else {
+        $('#task').css('border-color','red');
+         $('#task').css('border-width','0px');
+
+    $('ul').append(' <li>'
+         + task + '  <i class="fa fa-check"></i> <i class="fa fa-trash-o"></i><br><p class="time">'+time()+'</p> </li>')
+    $('#task').val('');
+} 
+})
+});
+
+
+$('ul').on('click','.fa-trash-o',function(){
+$(this).parent('li').fadeOut(200);
+});
+
+$('ul').on('click','.fa-check',function(){
+$(this).parent('li').toggleClass('completed');
+});
+
+
+function time(){
+
+var currentdate = new Date();
+var time = currentdate.getHours() + ":"  
+    + currentdate.getMinutes() + ":" 
+    + currentdate.getSeconds();
+    return time;
+
+}
+
+    </script>
+
+
+
+</body>
+</html>
